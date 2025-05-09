@@ -6,13 +6,10 @@ export const metadata: Metadata = {
   title: "Customers",
 };
 
-export default async function CustomersPage({
-  searchParams,
-}: {
-  searchParams?: {
-    query?: string;
-  };
+export default async function CustomersPage(props: {
+  searchParams?: Promise<{ query?: string }>;
 }) {
+  const searchParams = await props.searchParams;
   const query = searchParams?.query || "";
   return (
     <Suspense fallback={<p>Loading...</p>}>
